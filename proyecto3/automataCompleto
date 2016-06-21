@@ -1,0 +1,49 @@
+digraph Automata {
+	node [shape=circle]
+		"['p']"
+		"['q']"
+		"['r']"
+		"['s']" [peripheries=2]
+		"['p', 'q']"
+		"['p', 'r']"
+		"['p', 's']" [peripheries=2]
+		"['q', 'r']"
+		"['q', 's']" [peripheries=2]
+		"['r', 's']" [peripheries=2]
+		"['p', 'q', 'r']"
+		"['p', 'q', 's']" [peripheries=2]
+		"['p', 'r', 's']" [peripheries=2]
+		"['q', 'r', 's']" [peripheries=2]
+		"['p', 'q', 'r', 's']" [peripheries=2]
+		INICIO [label="" fixedsize=true height=0]
+			INICIO -> "['p']"
+			"['q']" -> "['r']" [label=1]
+			"['q']" -> "['r']" [label=0]
+			"['q', 'r']" -> "['r']" [label=1]
+			"['q', 'r']" -> "['r', 's']" [label=0]
+			"['s']" -> "['s']" [label=1]
+			"['s']" -> "['s']" [label=0]
+			"['q', 'r', 's']" -> "['r', 's']" [label=1]
+			"['q', 'r', 's']" -> "['r', 's']" [label=0]
+			"['p', 'r', 's']" -> "['p', 's']" [label=1]
+			"['p', 'r', 's']" -> "['p', 'q', 's']" [label=0]
+			"['r', 's']" -> "['s']" [label=1]
+			"['r', 's']" -> "['s']" [label=0]
+			"['p']" -> "['p']" [label=1]
+			"['p']" -> "['p', 'q']" [label=0]
+			"['p', 'q', 's']" -> "['p', 'r', 's']" [label=1]
+			"['p', 'q', 's']" -> "['p', 'q', 'r', 's']" [label=0]
+			"['p', 's']" -> "['p', 's']" [label=1]
+			"['p', 's']" -> "['p', 'q', 's']" [label=0]
+			"['q', 's']" -> "['r', 's']" [label=1]
+			"['q', 's']" -> "['r', 's']" [label=0]
+			"['p', 'r']" -> "['p']" [label=1]
+			"['p', 'r']" -> "['p', 'q', 's']" [label=0]
+			"['p', 'q', 'r', 's']" -> "['p', 'r', 's']" [label=1]
+			"['p', 'q', 'r', 's']" -> "['p', 'q', 'r', 's']" [label=0]
+			"['p', 'q', 'r']" -> "['p', 'r']" [label=1]
+			"['p', 'q', 'r']" -> "['p', 'q', 'r', 's']" [label=0]
+			"['p', 'q']" -> "['p', 'r']" [label=1]
+			"['p', 'q']" -> "['p', 'q', 'r']" [label=0]
+			"['r']" -> "['s']" [label=0]
+}
