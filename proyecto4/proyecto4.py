@@ -95,30 +95,26 @@ def derivarTodo(tipo, gramatica, string, inicio = 'S', n = 100, m = 100):
         reemplazadosV = reemplazados[:]
         reemplazados =[]
         #para el indice de la palabra
-        contador = 0
+        idGenerado = 0
+        #para cada P generado...
         for generado in viejos:
             #para el indice del caracter
-            if tipo == 'derecha':
-                contador2 = len(generado) - 1
-                orden = reversed(generado)
-            else:
-                orden = generado
-                contador2 = 0
-                
-            for char in orden:
+            idChar = ((len(generado) - 1) if tipo == 'derecha' else 0)
+            for char in (reversed(generado) if tipo == 'derecha' else generado ):
                 #si es una variable (mayuscula)
                 #if char in vars:
                 if char.isupper():
                     #para cada regla gramatica..
-                    for rep in gramatica[char]:
-                        
-                        
-                        temp2 = generado[:contador2] + bcolors.FAIL + generado[contador2] + bcolors.ENDC + generado[contador2+1:]
-                        camino = reemplazadosV[contador] + temp2 + ' (' + char + '->' + rep + ')|'
+                    for rep in gramatica[char]:                     
+                        temp = generado[:idChar] + bcolors.FAIL + generado[idChar] + bcolors.ENDC + generado[idChar+1:]
+                        #generar string representando el camino
+                        camino = reemplazadosV[idGenerado] + temp + ' (' + char + '->' + rep + ')|'
+                        #agregar al arreglo que corresponde con los nuevos elementos generados
                         reemplazados.append(camino)
+                        #reemplazar lambda/espacios en blanco
                         if rep == "_":
                             rep = ""
-                        temp = generado[:contador2] + rep + generado[contador2+1:]
+                        temp = generado[:idChar] + rep + generado[idChar+1:]
                         #si es terminal (minusculas) y es igual al string de entrada...
                         if temp == string and temp.islower():  
                             camino += string  
@@ -133,11 +129,8 @@ def derivarTodo(tipo, gramatica, string, inicio = 'S', n = 100, m = 100):
                         nuevos.append(temp)
                     if tipo == 'izquierda' or tipo == 'derecha':
                         break
-                if tipo == 'derecha':
-                    contador2-=1
-                else:
-                    contador2+=1
-            contador+=1
+                idChar = (idChar - 1 if tipo == 'derecha' else idChar + 1)         
+            idGenerado+=1
     return resultado
 
 #main
