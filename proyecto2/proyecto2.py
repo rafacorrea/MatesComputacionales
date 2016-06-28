@@ -3,16 +3,11 @@ _strings = ['u', 'v', 'w', 'x', 'y', 'z']
 
 #funcion que regresa dos listas: los strings base, y las reglas
 def parseFile(archivo):
-    Q = []
-    S = []
-    D = []
-    q = []
-    F = []
     f = open(archivo, 'r')
+    base = f.readline().split()
+    reglas = []
     for line in f:
-        linea = line.split()
-        if linea[0] == 'q':
-            
+        reglas = line.split()
     return base, reglas
 
 #genera strings con n recursiones

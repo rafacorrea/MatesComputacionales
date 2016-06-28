@@ -135,10 +135,10 @@ def recorrer(D,F,q,dot, recorrido):
         if len(destino):
             dot.edge(key, repr(destino), label = i)
         
-        #Busca si ya recorrio este nodo...
-        if repr(destino) not in recorrido:
-            #recorre para los destinos
-            recorrer(D, F, destino, dot, recorrido)
+            #Busca si ya recorrio este nodo...
+            if repr(destino) not in recorrido:
+                #recorre para los destinos
+                recorrer(D, F, destino, dot, recorrido)
 
 def escribirResultados(Q, S, D, q, F):
         f = open('resultado', 'w+')
